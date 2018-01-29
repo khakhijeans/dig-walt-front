@@ -1,0 +1,104 @@
+<div class="content-body">
+  <section class="row">
+    <div class="col-sm-12">
+        <div id="cmp-mang" class="card">
+            <div class="card-header">
+              <h4 class="card-title">Company Management</h4>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-xl-4 col-lg-6 col-md-12">
+                        <fieldset class="form-group">
+                          <select class="form-control" id="cmbDashboardCompany" (change)="getDocumentList($event.target.value)" [(ngModel)]="cmbDashboardCompany">
+                            <option value="-1">-- Select Company --</option>
+                            <option *ngFor="let c of companyList" [value]="c._id">{{c.name}}</option>
+                          </select>
+                        </fieldset>
+                      </div>
+                      <button type="button" class="btn btn-primary btn-min-width mr-1 mb-1" (click)="openAddCompanyModal()">New</button>
+                  </div>
+              </div>
+            </div>
+        </div>
+
+        <!-- upload-doc-->
+        <div id="upload-doc" class="card" *ngIf="cmbDashboardCompany != -1">
+            <div class="card-header">
+              <h4 class="card-title">Document Upload</h4>
+            </div>
+            <div class="card-content collapse show">
+                <div class="card-body">
+                    <div class="hero is-fullheight">
+                      <div class="hero-body">
+                        <div class="container">
+                          <div class="columns is-multiline">
+                            <div class="column is-8 is-offset-2">
+                              <div class="drop-container" ngFileDrop [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput">
+                                <p>
+                                  Drag a file here or
+                                  <label class="upload-button">
+                                    <input type="file" ngFileSelect [options]="options" (uploadOutput)="onUploadOutput($event)" [uploadInput]="uploadInput" multiple>
+                                    browse
+                                  </label>
+                                  to upload.
+                                </p>
+                              </div>
+                            </div>
+                            <div class="column is-8 is-offset-2">
+                              <div class="upload-items">
+                                <div class="upload-item" *ngFor="let f of files; let i = index;">
+                                  <span class="filename">
+                                    <span>{{ f.name }} ({{ f.id }}) - {{ f.progress?.data?.percentage }}%</span>
+                                    <span>uploading with {{ f.progress?.data?.speedHuman }}</span>
+                                    <span>ETA {{ f.progress?.data?.etaHuman }}</span>
+                                  </span>
+                                  <div class="progress">
+                                    <span class="bar" [style.width]="f?.progress?.data?.percentage + '%'"></span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ upload-doc-->
+
+        <!-- list-docs-->
+        <div id="list-docs" class="card" *ngIf="cmbDashboardCompany != -1">
+            <div class="card-header">
+                <h4 class="card-title">Document List</h4>
+            </div>
+            <div class="card-content collapse show">
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Size</th>
+                            <th>Created</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let d of documentList">
+                            <td><a href="{{api}}/api/download/{{d._id}}">{{d.filename}}</a></td>
+                            <td>{{d.contentType}}</td>
+                            <td>{{d.length | fileSize}}</td>
+                            <td>{{d.uploadDate | date:'medium'}}</td>
+                            <td><a class="fonticon-wrap" (click)="deleteDocument(d._id)"><i class="fa fa-trash-o"></i></a></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+        <!--/ list-docs-->
+    </div>
+  </section>
+</div>

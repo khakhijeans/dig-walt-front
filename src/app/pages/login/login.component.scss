@@ -1,0 +1,28 @@
+.form-simple input {
+    &[type="text"] {
+      margin-bottom: 10px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    &[type="mail"] {
+      margin-bottom: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+    &[type="password"] {
+      margin-bottom: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+  }
+  
+  .help-block ul {
+    margin: 0  !important;
+    padding: 0 !important;
+    li {
+      list-style: none;
+      color: #dc3545;
+    }
+  }

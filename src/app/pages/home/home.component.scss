@@ -1,0 +1,66 @@
+.dark-modal .modal-content {
+    background-color: #292b2c;
+    color: white;
+}
+ .dark-modal .close {
+    color: white;   
+}
+
+.hero {
+    background: #ffffff;
+    .drop-container {
+      background: #ffffff;
+      border-radius: 6px;
+      height: 150px;
+      width: 100%;
+      box-shadow: 1px 2px 20px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px dashed #C0C4C7;
+      p {
+        font-size: 16px;
+        font-weight: 400;
+        color: #C0C4C7;
+        .upload-button {
+          display: inline-block;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          color: #5754A3;
+          input {
+            display: none;
+          }
+        }
+      }
+    }
+    .upload-items {
+      display: block;
+      width: 100%;
+      .upload-item {
+        width: 100%;
+        display: block;
+        margin-top: 20px;
+        .filename {
+          display: block;
+          padding: 0 0 5px 5px;
+          color: #74809D;
+        }
+        .progress {
+          display: block;
+          position: relative;
+          width: 100%;
+          height: 15px;
+          border: 1px solid #5754A3;
+          border-radius: 2px;
+          .bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 15px;
+            background: #5754A3;
+          }
+        }
+      }
+    }
+  }
