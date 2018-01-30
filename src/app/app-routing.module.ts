@@ -12,12 +12,13 @@ import { AuthGuard } from './shared/auth/auth-guard.service';
 const appRoutes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   { path: '', component: HomeLayoutComponent, data: { title: 'Home' }, children: HOME_ROUTES, canActivate: [AuthGuard] },
   { path: '', component: LoginLayoutComponent, data: { title: 'Login' }, children: LOGIN_ROUTES },
 
+  {path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({
